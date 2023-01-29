@@ -1,7 +1,6 @@
 package lesson1;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -10,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         // Укажите название метода
 //        System.out.println(isPalindrome());
-        repeatText();
+        calculation();
 
 
     }
@@ -185,6 +184,59 @@ public class Main {
 
 // По поводу файлов я не все до конца поняла. Как будто файл создался. В общем сделала что-то наугад)
     }
+
+
+
+    // ДЗ 3 семинар
+//    1. Пусть дан произвольный список целых чисел,
+//    удалить из него четные числа (в языке уже есть что-то готовое для этого)
+    public static void deletedOddNumbs(){
+        ArrayList<Integer> numList = new ArrayList<>();
+
+        numList.add(51);
+        numList.add(14);
+        numList.add(11);
+        numList.add(12);
+        numList.add(31);
+        numList.add(21);
+
+        System.out.println("Оригинал: " + numList.toString());
+
+        numList.removeIf(i -> (i %2 != 0));
+
+        System.out.println("Новый список: " + numList.toString());
+
+
+    }
+
+//2. Задан целочисленный список ArrayList.
+// Найти минимальное, максимальное и среднее арифметическое из этого списка.
+public static void calculation(){
+    ArrayList<Integer> numList = new ArrayList<>();
+
+    numList.add(51);
+    numList.add(14);
+    numList.add(11);
+    numList.add(12);
+    numList.add(31);
+    numList.add(21);
+
+    double average = 0;
+    double sum = 0;
+
+    System.out.println("Список чисел: " + numList.toString());
+    System.out.println("Максимальное число: " + Collections.max(numList));
+    System.out.println("Минимальное число: " + Collections.min(numList));
+
+    for (int i = 0; i < numList.size(); i++) {
+        sum = sum + numList.get(i);
+    }
+    average = sum / numList.size();
+
+    System.out.println("Среднее арифметическое: " + average);
+
+}
+
 
 
 
