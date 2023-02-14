@@ -8,12 +8,8 @@ import java.io.PrintWriter;
 public class Main {
     public static void main(String[] args) {
         // Укажите название метода
-//        System.out.println(isPalindrome());
-        calculation();
-
-
+        invertList();
     }
-
     // 1. Задать одномерный массив и найти в нем минимальный и максимальный элементы
     public static void minMaxElements() {
 
@@ -101,9 +97,7 @@ public class Main {
         System.out.println(Arrays.toString(arr));
 
     }
-
 //________________________________________________________________________
-
     // Семинар 2, задачи:
 
     // 1. Дано число N(>0) и символы c1 и c2.
@@ -143,9 +137,7 @@ public class Main {
         }
         System.out.println(sb);
     }
-
 //________________________________________________________________________
-
     // ДЗ 2 семинар
     // 1. Напишите метод, который принимает на вход строку (String)
     // и определяет является ли строка палиндромом (возвращает boolean значение).
@@ -159,7 +151,6 @@ public class Main {
         String invertedText = sb.reverse().toString(); //присваиваем перевернутую строку
         return text.equalsIgnoreCase(invertedText); //возвращаем сравнение двух строк вне зависимости от регистра
     }
-
 
     //2. Напишите метод, который составит строку, состоящую из 100 повторений слова TEST
     // и метод, который запишет эту строку в простой текстовый файл, обработайте исключения.
@@ -184,8 +175,6 @@ public class Main {
 
 // По поводу файлов я не все до конца поняла. Как будто файл создался. В общем сделала что-то наугад)
     }
-
-
 
     // ДЗ 3 семинар
 //    1. Пусть дан произвольный список целых чисел,
@@ -237,10 +226,98 @@ public static void calculation(){
 
 }
 
+// Семинар 4
+    // Задача 0: Замерить время за которое ArrayList и LinkedList добавят 1000000 элементов. Сравнить
+
+    public static void measureTime(){
+        final int SIZE = 1_000_000;
+        Random random = new Random();
+
+        ArrayList<Integer> arrayList = new ArrayList<>(SIZE);
+        long start = System.currentTimeMillis();   // количество миллисекунд в текущий момент времени
+                                                  // System.currentTimeMillis() - кол-во миллисек, прошедших с 1.01.1970
+        for (int i = 0; i < SIZE; i++) {
+            arrayList.add(1);
+            //arrayList.add(random.nextInt(0, SIZE), 1); // В рандомное место от 0 элемента до САЙЗ добавляем элемент
+                                                            // Не работает
+        }
+        System.out.println("ArrayList: " + (System.currentTimeMillis() - start));
+
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        start = System.currentTimeMillis();
+        for (int i = 0; i < SIZE; i++) {
+            linkedList.add(1);
+        }
+        System.out.println("LinkedList: " + (System.currentTimeMillis() - start));
+
+
+    }
+
+//    Реализовать консольное приложение, которое:
+//    Принимает от пользователя строку вида
+//    text~num
+//    Нужно рассплитить строку по ~, сохранить text в связный список на позицию num.
+//    Если введено print~num, выводит строку из позиции num в связном списке и удаляет её из списка.
+
+// Семинар 4 - ДОМАШНЕЕ ЗАДАНИЕ
+
+//    1. Реализовать консольное приложение, которое:
+//    Принимает от пользователя и “запоминает” строки.
+//    Если введено print, выводит строки так, чтобы последняя введенная была первой в списке, а первая - последней.
+//    Если введено revert, удаляет предыдущую введенную строку из памяти.
+    public static void rememberLines(){
+
+        LinkedList<String> linesList = new LinkedList<>();
+
+
+        while (true){
+            Scanner iScanner = new Scanner(System.in);
+            System.out.println("Введите строку: ");
+            String line = iScanner.nextLine();
+            linesList.add(line);
+
+            if(line.equals("print")){
+                linesList.removeLast();
+                String first = linesList.getFirst();
+                String last = linesList.getLast();
+
+                linesList.removeFirst();
+                linesList.removeLast();
+
+                linesList.addFirst(last);
+                linesList.addLast(first);
+
+                System.out.println(linesList);
+                break;
+            }
+            else if(line.equals("revert")){
+                linesList.removeLast();
+                linesList.removeLast();
+                System.out.println(linesList);
+                break;
+            }
+        }
+    }
+
+//    2. Пусть дан LinkedList с несколькими элементами.
+//    Реализуйте метод, который вернет “перевернутый” список.
+    public static void invertList(){
+        LinkedList<Integer> numList = new LinkedList<>();
+        Collections.addAll(numList, 1, 2, 3, 4, 5);
+        System.out.println("Изначальный список: " + numList);
+
+        for (int i = 0; i < numList.size(); i++) {
+            numList.set(i, numList.getLast()-i);
+
+        }
+        System.out.println("Перевернутый список: " + numList);
+
+        }
 
 
 
-}
+    }
+
 
 
 
