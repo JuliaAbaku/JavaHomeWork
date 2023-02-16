@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 public class Main {
     public static void main(String[] args) {
         // Укажите название метода
-        invertList();
+        ;
     }
     // 1. Задать одномерный массив и найти в нем минимальный и максимальный элементы
     public static void minMaxElements() {
@@ -298,7 +298,6 @@ public static void calculation(){
             }
         }
     }
-
 //    2. Пусть дан LinkedList с несколькими элементами.
 //    Реализуйте метод, который вернет “перевернутый” список.
     public static void invertList(){
@@ -313,7 +312,54 @@ public static void calculation(){
         System.out.println("Перевернутый список: " + numList);
 
         }
+//Семинар 5
+//    Задача: Реализовать алгоритм волновой
 
+    static int[][] getMap() {
+        return new int[][] {
+                { 00, 00, 00, 00, 00, 00, 00, 00 },
+                { 00, 00, -1, 00, 00, 00, 00, 00 },
+                { 00, 00, -1, 00, -1, 00, -1, 00 },
+                { 00, 00, -1, 00, 00, 00, -1, 00 },
+                { 00, 00, -1, 00, 00, 00, -1, 00 },
+                { 00, -1, -1, -1, -1, -1, -1, 00 },
+                { 00, 00, -1, 00, 00, 00, -1, 00 },
+                { 00, 00, -1, 00, 00, 00, -1, 00 },
+                { 00, 00, 00, 00, 00, 00, -1, 00 },
+                { 00, 00, 00, 00, 00, 00, -1, 00 },
+                { 00, 00, 00, 00, 00, 00, 00, 00 }
+        };
+    }
+
+    static void printMap(int[][] map) {
+        int rows = map.length;
+        int colums = map[0].length;
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < colums; j++) {
+                if (map[i][j] == -1)
+                    System.out.printf("%s", " @ ");
+                else if (map[i][j] == -2)
+                    System.out.printf("%s", " ╫ ");
+                else
+                    System.out.printf("%s", "░░░");
+            }
+            System.out.println();
+        }
+    }
+
+    static void start(int[][] map, int x, int y) {
+        map[x][y] = -2;
+    }
+    public static void rty (String[] args) {
+        int[][] map = getMap();
+        start(map, 7, 4);
+        printMap(map);
+    }
+
+//    public static void waveAlgorithm(){
+//
+//    }
 
 
     }
